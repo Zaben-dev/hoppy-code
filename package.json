@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start dev client": "nx serve client",
-    "start dev server": "nx serve client",
+    "start dev server": "nx serve server",
     "format": "nx format:write"
   },
   "private": true,
