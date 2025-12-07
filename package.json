@@ -5,7 +5,8 @@
   "scripts": {
     "start dev client": "nx serve client",
     "start dev server": "nx serve server",
-    "format": "nx format:write"
+    "format": "nx format:write",
+    "migrate": "npx prisma migrate dev --schema=apps/server/src/prisma/schema.prisma"
   },
   "private": true,
   "devDependencies": {
@@ -66,7 +67,10 @@
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@prisma/client": "^6.19.0",
     "axios": "^1.6.0",
+    "dotenv": "^17.2.3",
+    "prisma": "^6.19.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "zone.js": "~0.15.0"
