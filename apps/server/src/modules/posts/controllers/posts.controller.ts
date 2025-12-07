@@ -1,3 +1,4 @@
+import { PostDto } from './../../../../../../packages/shared/src/dtos/post/post.dto.interface';
 import { Controller, Get } from '@nestjs/common';
 import { PostsService } from '../services/posts.service';
 
@@ -6,7 +7,7 @@ export class PostsController {
   constructor(private readonly postService: PostsService) {}
 
   @Get()
-  getAllPosts(): string {
+  getAllPosts(): PostDto[] {
     return this.postService.getAllPosts();
   }
 }
