@@ -6,7 +6,7 @@
     "start dev client": "nx serve client",
     "start dev server": "nx serve server",
     "format": "nx format:write",
-    "migrate": "npx prisma migrate dev --schema=apps/server/src/prisma/schema.prisma"
+    "migrate": "npx prisma migrate dev --schema=apps/server/prisma"
   },
   "private": true,
   "devDependencies": {

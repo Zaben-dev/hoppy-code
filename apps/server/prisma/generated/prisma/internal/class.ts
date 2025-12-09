@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "C:\\Users\\Patricio de la Vega\\hoppy-code\\apps\\server\\src\\generated\\prisma",
+      "value": "C:\\Users\\Patricio de la Vega\\hoppy-code\\apps\\server\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -37,10 +37,10 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Patricio de la Vega\\hoppy-code\\apps\\server\\src\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Patricio de la Vega\\hoppy-code\\apps\\server\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
-  "relativePath": "../../prisma",
+  "relativePath": "../..",
   "clientVersion": "6.19.0",
   "engineVersion": "2ba551f319ab1df4bc874a89965d8b3641056773",
   "datasourceNames": [
@@ -55,8 +55,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Post {\n  id        Int      @id @default(autoincrement())\n  title     String\n  content   String\n  author    String?\n  tags      String[] @default([])\n  published Boolean  @default(false)\n  summary   String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "1cba5ce3a1fa4015aaefb06e3dce09919129c5a3e8f5e3b0dd21b1f42a8f2192",
+  "inlineSchema": "model Post {\n  id        Int      @id @default(autoincrement())\n  title     String\n  content   String\n  author    String?\n  tags      String[] @default([])\n  published Boolean  @default(false)\n  summary   String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n",
+  "inlineSchemaHash": "f8f3edf8e7798cadaa8c761d2608fcdbc999fee48a2b0f1596e952311275f6ce",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
