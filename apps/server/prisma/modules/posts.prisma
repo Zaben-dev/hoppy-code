@@ -3,7 +3,7 @@ model Post {
   title     String
   content   String
   author    String?
-  tags      String[]  @default([])
+  tags      String[]?  @default([])
   published Boolean    @default(false)
   summary   String?
   createdAt DateTime   @default(now())
