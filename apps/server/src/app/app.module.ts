@@ -1,10 +1,7 @@
-import { PostsController } from './../modules/posts/controllers/posts.controller';
 import { Module } from '@nestjs/common';
-import { PostsService } from '../modules/posts/services/posts.service';
+import { PostsModule } from '../modules/posts/posts.module';
 
 @Module({
-  imports: [],
-  controllers: [PostsController],
-  providers: [PostsService],
+  imports: [PostsModule],
 })
 export class AppModule {}
