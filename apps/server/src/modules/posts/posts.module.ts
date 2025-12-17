@@ -4,7 +4,6 @@ import { PostsController } from './controllers/posts.controller';
 import { PostsRepositoryService } from './repositories/posts-repository.service';
 
 @Module({
-
   controllers: [PostsController],
   providers: [PostsRepositoryService, PostsService],
 })
