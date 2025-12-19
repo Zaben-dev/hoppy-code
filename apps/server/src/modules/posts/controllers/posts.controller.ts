@@ -15,6 +15,7 @@ import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { PostDto } from '../dto/post-dto';
 import { CreatePostDto } from '../dto/create-post-dto';
 import { PostSummaryDto } from '../dto/post-summary-dto';
+import { getPostsQueryDto } from '../dto/get-posts-query-dto';
 
 @ApiTags('posts')
 @Controller('posts')
@@ -27,11 +28,7 @@ export class PostsController {
     type: PostSummaryDto,
   })
   @Get()
-  getAllPosts(
-    @Query('first', new ParseIntPipe({ errorHttpStatusCode: 400 }))
-    first: string,
-    @Query('after') after: string
-  ) {
+  getAllPosts(@Query() query: getPostsQueryDto) {
     return this.postService.getAllPosts();
   }
 
