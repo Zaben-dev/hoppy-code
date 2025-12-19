@@ -29,7 +29,7 @@ export class PostsController {
   })
   @Get()
   getAllPosts(@Query() query: getPostsQueryDto) {
-    return this.postService.getAllPosts();
+    return this.postService.getAllPosts(query);
   }
 
   @ApiResponse({ status: 200, description: 'Return one post', type: PostDto })
