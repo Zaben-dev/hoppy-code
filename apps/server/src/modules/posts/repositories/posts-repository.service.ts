@@ -2,12 +2,13 @@ import { PostCreateInput } from './../../../../prisma/generated/prisma/models/Po
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from 'apps/server/prisma/generated/prisma/client';
 import type { Post, Prisma } from 'apps/server/prisma';
+import { SortOrder } from 'packages/shared/src/dtos/post/get-posts-query-dto.interface';
 
 @Injectable()
 export class PostsRepositoryService {
   private prisma = new PrismaClient();
 
-  findAll() {
+  findAll(params: { take: number; cursor?: { id: number }; order: SortOrder }) {
     return this.prisma.post.findMany({
       select: {
         id: true,
@@ -17,9 +18,10 @@ export class PostsRepositoryService {
         published: true,
         summary: true,
       },
-      orderBy: { createdAt: 'desc' },
-      take: 10,
-      skip: 20,
+      take: params.take,
+      skip: params.cursor ? 1 : 0,
+      cursor: params.cursor,
+      orderBy: [{ createdAt: params.order }, { id: params.order }],
     });
   }
 
