@@ -2,4 +2,6 @@ import { IPostSummaryDto } from './../../../../../../packages/shared/src/dtos/po
 import { OmitType } from '@nestjs/swagger';
 import { PostDto } from './post-dto';
 
-export class PostSummaryDto extends OmitType(PostDto, ['content'] as const) implements IPostSummaryDto {}
+export class PostSummaryDto
+  extends OmitType(PostDto, ['content'] as const)
+  implements IPostSummaryDto {}
