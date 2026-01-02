@@ -10,7 +10,7 @@ export class PostsService {
   constructor(private readonly postsRepository: PostsRepositoryService) {}
 
   async getAllPosts(query: getPostsQueryDto) {
-    const cursor = query.after ? decodeCursor(query.after) : null;
+    const cursor = query.after ? decodeCursor(query.after) : undefined;
 
     const posts = await this.postsRepository.findAll({
       take: query.first,
@@ -18,11 +18,14 @@ export class PostsService {
       order: query.order,
     });
 
+    const hasNextPage = posts.length > query.first;
+    const data = hasNextPage ? posts.slice(0, query.first) : posts;
+
     return {
-      posts,
+      data,
       pageInfo: {
-        endCursor: posts.length ? encodeCursor(posts.at(-1)) : null,
-        hasNextPage: posts.length === query.first,
+        endCursor: data.length ? encodeCursor(data.at(-1)) : null,
+        hasNextPage,
       },
     };
   }
