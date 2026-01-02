@@ -18,7 +18,7 @@ export class PostsRepositoryService {
         published: true,
         summary: true,
       },
-      take: params.take,
+      take: +params.take + 1,
       skip: params.cursor ? 1 : 0,
       cursor: params.cursor,
       orderBy: [{ createdAt: params.order }, { id: params.order }],
@@ -28,7 +28,7 @@ export class PostsRepositoryService {
   findOne(id: number) {
     return this.prisma.post.findUnique({
       where: {
-        id,
+        id: +id,
       },
     });
   }
@@ -52,5 +52,9 @@ export class PostsRepositoryService {
         id,
       },
     });
+  }
+
+  postsCount() {
+    return this.prisma.post.count();
   }
 }
