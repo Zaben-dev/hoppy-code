@@ -1,0 +1,54 @@
+###########################################################
+# GET ALL POSTS (pagination)
+# query parameters: first, after (optional), order (ASC/DESC)
+GET http://localhost:3000/api/posts?first=5
+Content-Type: application/json
+
+###
+# GET ALL POSTS with cursor
+GET http://localhost:3000/api/posts?first=5&after=eyJpZCI6M30=&order=asc
+Content-Type: application/json
+
+###########################################################
+# GET ONE POST
+# valid id
+GET http://localhost:3000/posts/1
+Content-Type: application/json
+
+###
+# GET ONE POST (non-existent)
+# to test 404
+GET http://localhost:3000/api/posts/99999
+Content-Type: application/json
+
+###########################################################
+# CREATE POST
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+  "title": "Test post",
+  "content": "This is a test post",
+  "author": "Patryk",
+  "tags": ["nestjs", "prisma"],
+  "published": true,
+  "summary": "Short summary of the test post"
+}
+
+###########################################################
+# UPDATE POST
+PATCH http://localhost:3000/posts/5
+Content-Type: application/json
+
+{
+  "title": "patch test",
+  "author": "Patryk",
+  "tags": ["nestjs", "prisma"],
+  "published": true,
+  "summary": "Short summary of the test post"
+}
+
+###########################################################
+# DELETE POST
+# returns 204 No Content
+DELETE http://localhost:3000/posts/1

@@ -5,7 +5,6 @@ import {
   Get,
   HttpCode,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -46,8 +45,8 @@ export class PostsController {
 
   @ApiResponse({ status: 200, description: 'update post' })
   @Patch(':id')
-  updatePost(@Param('id') id: number) {
-    this.postService.deletePost(id);
+  updatePost(@Param('id') id: number, @Body() post: CreatePostDto) {
+    return this.postService.updatePost(id, post);
   }
 
   @ApiResponse({ status: 200, description: 'update post' })
