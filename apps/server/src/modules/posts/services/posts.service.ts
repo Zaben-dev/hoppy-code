@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PostsRepositoryService } from '../repositories/posts-repository.service';
 import { CreatePostDto } from '../dto/create-post-dto';
 import { UpdatePostDto } from '../dto/update-post-dto';
@@ -24,14 +24,20 @@ export class PostsService {
     return {
       data,
       pageInfo: {
-        endCursor: data.length ? encodeCursor(data.at(-1)) : null,
+        endCursor: hasNextPage ? encodeCursor(data.at(-1)) : null,
         hasNextPage,
       },
     };
   }
 
-  getPost(id: number) {
-    return this.postsRepository.findOne(id);
+  async getPost(id: number) {
+    const post = await this.postsRepository.findOne(id);
+
+    if (!post) {
+      throw new NotFoundException(`Post ${id} not found`);
+    }
+
+    return post;
   }
 
   createPost(post: CreatePostDto) {
@@ -42,7 +48,13 @@ export class PostsService {
     return this.postsRepository.delete(+id);
   }
 
-  updatePost(id: number, post: UpdatePostDto) {
-    return this.postsRepository.update(+id, post);
+  async updatePost(id: number, post: UpdatePostDto) {
+    const updatedPost = await this.postsRepository.update(+id, post);
+
+    if (!updatedPost) {
+      throw new NotFoundException(`Post ${id} not found`);
+    }
+
+    return updatedPost;
   }
 }
